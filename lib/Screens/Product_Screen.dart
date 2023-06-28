@@ -8,9 +8,21 @@ class Productscreen extends StatefulWidget {
 
   @override
   State<Productscreen> createState() => _ProductscreenState();
-}
 
+
+}
+bool isProductSaved = false;
 class _ProductscreenState extends State<Productscreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    //..add(ProductLoadedEvent());
+    if(!isProductSaved) {
+      context.read<ProductsBloc>().add(ProductLoadedEvent());
+      isProductSaved = true;
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
